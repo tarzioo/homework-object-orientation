@@ -3,9 +3,12 @@ Part 1: Discussion
 
 1. What are the three main design advantages that object orientation
    can provide? Explain each concept.
-   Encapsulation.
-   Instantiation
-   Polymorphism
+   Encapsulation. Keeping everything 'together'
+
+   Abstraction. It reduces complexity. It can hide details we don't need.
+
+   Polymorphism. It allows flexibility of types without conditionals. Interchangeability
+   of components
 
 2. What is a class?
     It is a type of 'thing'. It is like a 'smarter dictionary'. They can define attributes
@@ -45,9 +48,12 @@ Part 1: Discussion
 # Parts 2 through 5:
 # Create your classes and class methods
 
-#super class called Student
-class Student(object):
-    student_info = {}
+#super class called AbstractStudentInfo
+class AbstractStudentInfo(object):
+    pass
+
+#sub class called Student. Its attributes are first_name, last_name and address
+class Student(AbstractStudentInfo):
 
     #dunder init method
     def __init__(self, first_name, last_name, address):
@@ -55,9 +61,52 @@ class Student(object):
         self.last_name = last_name
         self.address = address
 
-print student_info
 
-class Exam(Student):
 
-    def __init__(self):
+#subclass called Question. It will take in question and correct_answer as
+# #parameters and set as class attributes and bind them to a dictionary, questions.
+# class Question(object):
+
+#     def __init__(self):
+#         self.current_dict = {}
+
+#     def add_question(self, question, correct_answer):
+#         self.question = question
+#         self.correct_answer = correct_answer
+
+#         self.current_dict[question] = correct_answer
+#         print self.current_dict
+  
+#         return self.current_dict
+
+# question1 = Question()
+# # ('what color is the sky', 'blue')
+# question2 = Question()
+# # ('what color is the grass', 'green')
+# question3 = Question()
+# # ('what color is the sun', 'yellow')
+
+
+class Question(AbstractStudentInfo):
+
+    def __init__(self, question, correct_answer):
+        self.question = question
+        self.correct_answer = correct_answer
+
+    def ask_question(self, question, correct_answer):
+        print self.question    
+
+
+#subclass called Exam, It takes in the questions dictionary from the Question class
+#it also has class attributes of 'exam_name'
+class Exam(AbstractStudentInfo):
+    score = 0
+
+
+    def __init__(self, name):
+        self.name = name
         self.questions = []
+
+    def add_question(self, question, correct_answer):
+        super(Exam, self).    
+
